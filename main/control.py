@@ -119,9 +119,10 @@ def main(csv_path, target_col, outdir, test_size=0.2, random_state=42):
         ("scaler", StandardScaler())
     ])
     categorical_transformer = Pipeline(steps=[
-        ("imputer", SimpleImputer(strategy="constant", fill_value="missing")),
-        ("onehot", OneHotEncoder(handle_unknown="ignore", sparse=False))
+    ("imputer", SimpleImputer(strategy="constant", fill_value="missing")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
     ])
+
     preprocessor = ColumnTransformer(
         transformers=[
             ("num", numeric_transformer, numeric_cols),
@@ -166,7 +167,7 @@ def main(csv_path, target_col, outdir, test_size=0.2, random_state=42):
         preds = pipeline.predict(X_test)
         r2 = r2_score(y_test, preds)
         mae = mean_absolute_error(y_test, preds)
-        rmse = mean_squared_error(y_test, preds, squared=False)
+        rmse = mean_squared_error(y_test, preds) ** 0.5
         print(f"R2: {r2:.4f}   MAE: {mae:.4f}   RMSE: {rmse:.4f}")
         # Save model
         joblib.dump(pipeline, outdir / "model_regressor.joblib")
