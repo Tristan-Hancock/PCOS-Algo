@@ -229,10 +229,17 @@ def main(csv_path, target_col, outdir, test_size=0.2, random_state=42):
 # ---------------------------
 # Argparse CLI
 # ---------------------------
+# ---------------------------
+# Argparse CLI
+# ---------------------------
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("--csv", required=True, help="Path to CSV file")
-    p.add_argument("--target", default="pcos_risk_score", help="Target column name (default: pcos_risk_score)")
-    p.add_argument("--outdir", default="models", help="Output directory to save models/artefacts")
+    p.add_argument("--csv", default="../data/simdata.csv",   # 👈 hard-coded default path
+                   help="Path to CSV file (default: data/simdata.csv)")
+    p.add_argument("--target", default="pcos_risk_score",
+                   help="Target column name (default: pcos_risk_score)")
+    p.add_argument("--outdir", default="main/models",
+                   help="Output directory to save models/artefacts")
     args = p.parse_args()
     main(args.csv, args.target, args.outdir)
+
