@@ -1,0 +1,12 @@
+Regression evaluation
+---------------------
+Samples: 200
+R²: 0.9715
+Pearson r: 0.9858 (p=1.77e-155)
+MAE: 0.0161
+RMSE: 0.0257
+
+Percent within error thresholds:
+  <= 5 points : 100.00 %
+  <=10 points : 100.00 %
+  <=15 points : 100.00 %
